@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --color-brand-blue: #3b82f6;
+  --color-brand-orange: #f97316;
+  --color-brand-purple: #a855f7;
+  --color-brand-cyan: #06b6d4;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-sans antialiased transition-colors duration-500;
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  .dark body {
+    @apply bg-[#030712] text-gray-100;
+  }
+
+  body:not(.dark) {
+    @apply bg-slate-50 text-slate-900;
+  }
+
+  #root {
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply backdrop-blur-xl border transition-colors duration-500;
+  }
+
+  .dark .glass {
+    @apply bg-[#030712]/60 border-white/10 shadow-xl shadow-black/40;
+  }
+
+  body:not(.dark) .glass {
+    @apply bg-white/85 border-slate-200/80 shadow-lg shadow-slate-200/50;
+  }
+
+  .glow-blue {
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.35);
+  }
+
+  .dark .glow-blue {
+    box-shadow: 0 0 60px rgba(59, 130, 246, 0.45);
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-blue-500 via-cyan-400 to-purple-500;
+  }
+
+  .section-overlay-dark {
+    @apply bg-gradient-to-b from-[#030712]/70 via-[#030712]/50 to-[#030712]/80;
+  }
+
+  .section-overlay-light {
+    @apply bg-gradient-to-b from-white/80 via-white/60 to-white/85;
+  }
+}
